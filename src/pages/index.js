@@ -1,6 +1,23 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Home() {
+
+  const [db,setDb] = useState([])
+
+  useEffect(()=>{
+    const peticion = async ()=>{
+    const endpoint = "http://localhost:8001/productos"
+    const respuesta = await axios.get(endpoint)
+    const info = await respuesta.data
+    
+    setDb(info)
+  }
+  peticion()
+},[]
+)
+
   return (
     <>
       <Head>
